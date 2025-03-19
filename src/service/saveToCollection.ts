@@ -6,20 +6,15 @@ function findAlreadyStoredPokemonCard(id: number, storedCollection: unknown[]) {
   return storedCollection.find((pokeCard) => pokeCard.id === id);
 }
 
+// Adicionar tipagem
 const saveToCollection = (newCards) => {
   const storedCollection = getParsedStoredCollection();
 
-  // Adiciona as novas cartas à coleção e remove duplicatas
-
   newCards.forEach((newCard) => {
-    // console.log('newCard', newCard);
-
     const findAlreadyExists = findAlreadyStoredPokemonCard(
       newCard.id,
       storedCollection
     );
-
-    // console.log('findAlreadyExists', findAlreadyExists);
 
     if (findAlreadyExists) {
       if (newCard.isShiny) {
@@ -35,19 +30,22 @@ const saveToCollection = (newCards) => {
         findAlreadyExists.found = true;
       }
 
+      if (
+        findAlreadyExists.shinyFound > 0 &&
+        findAlreadyExists.normalFound > 0
+      ) {
+        findAlreadyExists.isCompleted = true;
+      }
+
       const updatedCollection = storedCollection.map((item) =>
         item.id === newCard.id ? findAlreadyExists : item
       );
-
-      // console.log('updatedCollection', updatedCollection);
 
       localStorage.setItem('collection', JSON.stringify(updatedCollection));
 
       return;
     }
   });
-
-  //   console.log(storedCollection);
 };
 
 export default saveToCollection;
