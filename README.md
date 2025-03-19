@@ -10,7 +10,7 @@
   - Booster ajudará a encontrar pokémons mais raros
   - Booster shiny
 
-[] - Melhoria no sistema de peso de pokémon
-[] - Adição do recurso de obter moedas por pokémon
-[] - Melhorias visuais
+[x] - Melhoria no sistema de peso de pokémon
+[x] - Adição do recurso de obter moedas por pokémon
+[x] - Melhorias visuais
 [] - Adicionar a 2a geração
