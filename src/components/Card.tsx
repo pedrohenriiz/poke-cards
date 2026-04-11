@@ -8,6 +8,8 @@ export interface CustomCardProps extends CardProps {
   isNew?: boolean;
 }
 
+type RarityProps = 'common' | 'uncommon' | 'rare' | 'legendary' | 'mystic';
+
 export const Card = ({
   image,
   name,
@@ -16,9 +18,7 @@ export const Card = ({
   cardRarity,
   isNew,
 }: CustomCardProps) => {
-  function defineCardRarity(
-    rarity: 'common' | 'uncommon' | 'rare' | 'legendary' | 'mystic'
-  ) {
+  function defineCardRarity(rarity: RarityProps) {
     switch (rarity) {
       case 'common':
         return 'border-yellow-200 bg-yellow-50';
@@ -35,9 +35,7 @@ export const Card = ({
     }
   }
 
-  function defineNewRarity(
-    rarity: 'common' | 'uncommon' | 'rare' | 'legendary' | 'mystic'
-  ) {
+  function defineNewRarity(rarity: RarityProps) {
     switch (rarity) {
       case 'common':
         return 'bg-yellow-100';
@@ -68,7 +66,7 @@ export const Card = ({
       {isNew && (
         <span
           className={`absolute -top-4 right-50% ${defineNewRarity(
-            cardRarity
+            cardRarity,
           )} text-black text-xs font-semibold px-2 py-2 rounded-md shadow-sm`}
         >
           Novo⚡
