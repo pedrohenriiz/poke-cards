@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Card } from '../../components/Card';
-
 import saveToCoins from '../../service/saveCoins';
 import { InventoryProps } from '../../types/inventoryTypes';
 import updatePlayerInventory from './utils/updatePlayerInventory';
@@ -11,20 +10,20 @@ import { CardProps } from '../../types/cardTypes';
 import { CollectionProps } from '../../types/collectionTypes';
 
 interface PackOpenerProps {
-  setCoins: Dispatch<SetStateAction<number>>;
-  setAnimate: Dispatch<SetStateAction<boolean>>;
-  setAddedCoins: Dispatch<SetStateAction<number>>;
   openingPackage?: {
     id: string;
     package_type: string;
   };
+  setCoins: Dispatch<SetStateAction<number>>;
+  setAnimate: Dispatch<SetStateAction<boolean>>;
+  setAddedCoins: Dispatch<SetStateAction<number>>;
 }
 
 export default function PackOpener({
+  openingPackage,
   setCoins,
   setAnimate,
   setAddedCoins,
-  openingPackage,
 }: PackOpenerProps) {
   const [cards, setCards] = useState<CardProps[]>([]);
   const [isOpening, setIsOpening] = useState(false);
@@ -39,8 +38,8 @@ export default function PackOpener({
   const currentPackage = inventory.find((item) => item.id === packageData?.id);
 
   const { openPack } = useOpenPack({
-    setAddedCoins,
     packageData,
+    setAddedCoins,
     saveToCoins,
     setAnimate,
     setCards,
@@ -54,11 +53,11 @@ export default function PackOpener({
     JSON.parse(localStorage.getItem('collection') as string) || [];
 
   const pokemonsAlreadyFound = pokemonCollection.filter(
-    (p) => p.id && p.normalFound === 1
+    (p) => p.id && p.normalFound === 1,
   );
 
   const pokemonShinyAlreadyFound = pokemonCollection.filter(
-    (p) => p.id && p.shinyFound === 1 && !p.isCompleted
+    (p) => p.id && p.shinyFound === 1 && !p.isCompleted,
   );
 
   return (
@@ -75,11 +74,11 @@ export default function PackOpener({
             const cardId = card.id;
 
             const isFirstOccurrence = pokemonsAlreadyFound.find(
-              (pokemonId) => pokemonId.id === cardId
+              (pokemonId) => pokemonId.id === cardId,
             );
 
             const isFirstShinyOcurrence = pokemonShinyAlreadyFound.find(
-              (pokemonId) => pokemonId.id === cardId
+              (pokemonId) => pokemonId.id === cardId,
             );
 
             return (
@@ -91,13 +90,24 @@ export default function PackOpener({
                 index={index}
                 cardRarity={card.cardRarity}
                 isNew={!!isFirstOccurrence || !!isFirstShinyOcurrence}
+                pokemonId={card.id}
               />
             );
           })}
       </div>
 
       <button
-        className='px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow-lg cursor-pointer disabled:bg-blue-200 disabled:cursor-not-allowed'
+        className={`
+          relative px-8 py-3 rounded-lg font-bold uppercase tracking-widest cursor-pointer
+          transition-all duration-200
+          disabled:opacity-40 disabled:cursor-not-allowed
+          active:scale-95 active:shadow-[0_2px_0_#a37a00]
+          ${
+            isOpening || isAnimating
+              ? 'bg-yellow-300 text-yellow-900 shadow-[0_4px_0_#a37a00]'
+              : 'bg-yellow-300 text-yellow-900 shadow-[0_4px_0_#a37a00] hover:-translate-y-0.5 hover:shadow-[0_6px_0_#a37a00]'
+          }
+        `}
         onClick={openPack}
         type='button'
         disabled={
@@ -106,7 +116,16 @@ export default function PackOpener({
           (location.pathname === '/open-package' && !currentPackage)
         }
       >
-        {isOpening || isAnimating ? 'Abrindo Pacote...' : 'Abrir Pacote'}
+        <span className='flex items-center gap-2'>
+          {isOpening || isAnimating ? (
+            <>
+              <span className='w-4 h-4 border-2 border-yellow-900/30 border-t-yellow-900 rounded-full animate-spin' />
+              Abrindo...
+            </>
+          ) : (
+            <>Abrir Pacote</>
+          )}
+        </span>
       </button>
 
       {packageData && currentPackage && (
