@@ -1,5 +1,5 @@
 import { motion, useAnimation } from 'framer-motion';
-import { CardProps } from '../types/cardTypes';
+import { CardProps } from '../../../../types/cardTypes';
 import { Zap } from 'lucide-react';
 import { useEffect } from 'react';
 

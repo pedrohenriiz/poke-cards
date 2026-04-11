@@ -67,7 +67,7 @@ export default function useOpenPack({
       setIsAnimating,
       setIsOpening,
       updatePlayerInventory,
-    ]
+    ],
   );
 
   const openPack = useCallback(async () => {
@@ -85,7 +85,7 @@ export default function useOpenPack({
         shouldRollRarity: packShouldRollRarity,
       });
     } else {
-      commonPackPokemons = rarityBasedPack(undefined);
+      commonPackPokemons = rarityBasedPack();
     }
 
     const pokemonsFound = await fetchPokemonDetails({

@@ -10,10 +10,6 @@ interface FormatPokemonData {
   currentPackPokemons: PokemonListProps[];
 }
 
-/**
- * Formata os dados dos pokémons.
- *
- */
 export default function formatPokemonData({
   pokemonList,
   currentPackPokemons,
