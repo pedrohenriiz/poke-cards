@@ -4,6 +4,8 @@ Um jogo de cartas colecionáveis de Pokémon onde você abre pacotes, coleciona 
 
 ## Sobre o projeto
 
+<img width="1911" height="915" alt="image" src="https://github.com/user-attachments/assets/da91ea1c-fd37-4bfa-9be2-d6f991c59553" />
+
 PokeList é um jogo frontend onde o jogador ganha moedas, compra pacotes e abre cartas com Pokémon aleatórios. Cada carta possui raridade própria (Comum, Incomum, Raro, Lendário ou Místico) e pode ser Shiny — uma versão especial e mais difícil de conseguir.
 
 ## Funcionalidades
@@ -40,5 +42,3 @@ npm install
 # Inicie o servidor de desenvolvimento
 npm run dev
 ```
-
-Acesse `http://localhost:5173` no navegador.
