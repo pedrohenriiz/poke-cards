@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="260" viewBox="0 0 180 260" fill="none">
+  <rect x="4" y="6" width="172" height="250" rx="16" fill="black" opacity="0.2"/>
+  <rect width="172" height="250" rx="16" fill="#1e293b"/>
+  <rect x="1.5" y="1.5" width="169" height="247" rx="14.5" stroke="#facc15" stroke-width="3" fill="none"/>
+  <rect x="8" y="8" width="156" height="234" rx="10" fill="url(#cardGrad)"/>
+  <circle cx="86" cy="125" r="52" fill="black" opacity="0.15"/>
+  <circle cx="86" cy="125" r="48" fill="white" opacity="0.12"/>
+  <circle cx="86" cy="125" r="40" fill="black" opacity="0.2"/>
+  <circle cx="86" cy="125" r="32" fill="white" opacity="0.08"/>
+  <circle cx="74" cy="113" r="10" fill="white" opacity="0.15"/>
+  <defs>
+    <linearGradient id="cardGrad" x1="86" y1="8" x2="86" y2="242" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+</svg>
