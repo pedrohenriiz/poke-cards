@@ -1,19 +1,25 @@
-function getParsedStoredCollection() {
+import { CardProps } from '../types/cardTypes';
+import { CollectionProps } from '../types/collectionTypes';
+
+function getParsedStoredCollection(): CollectionProps[] {
   return JSON.parse(localStorage.getItem('collection') as string);
 }
 
-function findAlreadyStoredPokemonCard(id: number, storedCollection: unknown[]) {
+function findAlreadyStoredPokemonCard(
+  id: number,
+  storedCollection: CollectionProps[],
+) {
   return storedCollection.find((pokeCard) => pokeCard.id === id);
 }
 
 // Adicionar tipagem
-const saveToCollection = (newCards) => {
+const saveToCollection = (newCards: CardProps[]) => {
   const storedCollection = getParsedStoredCollection();
 
   newCards.forEach((newCard) => {
     const findAlreadyExists = findAlreadyStoredPokemonCard(
-      newCard.id,
-      storedCollection
+      newCard.id!,
+      storedCollection,
     );
 
     if (findAlreadyExists) {
@@ -38,7 +44,7 @@ const saveToCollection = (newCards) => {
       }
 
       const updatedCollection = storedCollection.map((item) =>
-        item.id === newCard.id ? findAlreadyExists : item
+        item.id === newCard.id ? findAlreadyExists : item,
       );
 
       localStorage.setItem('collection', JSON.stringify(updatedCollection));

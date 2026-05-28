@@ -16,7 +16,6 @@ export default function formatPokemonData({
 }: FormatPokemonData): CardProps[] {
   return pokemonList.map(({ id, name, sprites }, index) => {
     const isShiny = chance(pokemonData[id - 1].rarity);
-    // const isShiny = true;
     return {
       id,
       name,
