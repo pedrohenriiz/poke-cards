@@ -10,7 +10,7 @@ const AppRoutes = () => {
   useSetDailyDiscountPackage();
 
   return (
-    <BrowserRouter basename='/poke-cards'>
+    <BrowserRouter basename='/poke-cards/'>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route path='/' element={<HomePage />} />

@@ -17,7 +17,7 @@ export default function updatePlayerInventory({
   if (!packageData) return;
 
   const packageIndex = inventory.findIndex(
-    (item) => item.id === packageData.id
+    (item) => item.id === packageData.id,
   );
 
   // Se encontrar algo no inventário, atualiza
@@ -26,7 +26,11 @@ export default function updatePlayerInventory({
       inventory[packageIndex].quantity -= 1;
     } else {
       inventory.splice(packageIndex, 1);
-      navigate(location.pathname, { replace: true, state: undefined });
+
+      const url =
+        location.pathname === '/poke-cards/' ? '/' : location.pathname;
+
+      navigate(url, { replace: true, state: undefined });
     }
 
     localStorage.setItem('inventory', JSON.stringify(inventory));
