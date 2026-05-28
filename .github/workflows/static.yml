@@ -40,6 +40,10 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
+      - name: Check env
+        run: echo "API URL = $VITE_API_URL"
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
       - name: Build Project
         env:
           VITE_API_URL: ${{vars.VITE_API_URL}}
